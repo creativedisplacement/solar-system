@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarSystem.Core", "SolarSystem.Core\SolarSystem.Core.csproj", "{13024CBE-9E47-476E-B992-991E65F790E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarSystem.Data", "SolarSystem.Data\SolarSystem.Data.csproj", "{87578A36-BA90-4078-993C-244303BF0985}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarSystem.Models", "SolarSystem.Models\SolarSystem.Models.csproj", "{408508F6-1E79-4899-AE0A-DA377EB4F074}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarSystem.Repositories", "SolarSystem.Repositories\SolarSystem.Repositories.csproj", "{2E3D771D-87FC-41CC-93BE-39F80502303F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarSystem.WebApi", "SolarSystem.WebApi\SolarSystem.WebApi.csproj", "{983B74EA-9CC4-4AA5-A8C9-A522C40BE5E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarSystem.WebApi.Tests", "SolarSystem.WebApi.Tests\SolarSystem.WebApi.Tests.csproj", "{B171EC76-A437-4F44-8A68-056D4345216F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13024CBE-9E47-476E-B992-991E65F790E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13024CBE-9E47-476E-B992-991E65F790E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13024CBE-9E47-476E-B992-991E65F790E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13024CBE-9E47-476E-B992-991E65F790E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87578A36-BA90-4078-993C-244303BF0985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87578A36-BA90-4078-993C-244303BF0985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87578A36-BA90-4078-993C-244303BF0985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87578A36-BA90-4078-993C-244303BF0985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{408508F6-1E79-4899-AE0A-DA377EB4F074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{408508F6-1E79-4899-AE0A-DA377EB4F074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{408508F6-1E79-4899-AE0A-DA377EB4F074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{408508F6-1E79-4899-AE0A-DA377EB4F074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E3D771D-87FC-41CC-93BE-39F80502303F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E3D771D-87FC-41CC-93BE-39F80502303F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E3D771D-87FC-41CC-93BE-39F80502303F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E3D771D-87FC-41CC-93BE-39F80502303F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{983B74EA-9CC4-4AA5-A8C9-A522C40BE5E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{983B74EA-9CC4-4AA5-A8C9-A522C40BE5E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{983B74EA-9CC4-4AA5-A8C9-A522C40BE5E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983B74EA-9CC4-4AA5-A8C9-A522C40BE5E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B171EC76-A437-4F44-8A68-056D4345216F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B171EC76-A437-4F44-8A68-056D4345216F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B171EC76-A437-4F44-8A68-056D4345216F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B171EC76-A437-4F44-8A68-056D4345216F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
