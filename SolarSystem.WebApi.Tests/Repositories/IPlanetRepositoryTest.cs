@@ -43,5 +43,52 @@ namespace SolarSystem.WebApi.Tests.Repositories
             Assert.AreEqual("Planet 1", result.Take(1).SingleOrDefault().Name);
             Assert.AreEqual("Planet 2", result.Skip(1).Take(1).SingleOrDefault().Name);
         }
+
+        [TestMethod]
+        public async Task Repository_Test_Get_All_Planets_Check_Ordinal()
+        {
+            IEnumerable<Planet> result = await planetRepository.GetPlanetsAsync();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count());
+            Assert.AreNotEqual("Planet 2", result.Take(1).SingleOrDefault().Name);
+            Assert.AreNotEqual("Planet 1", result.Skip(1).Take(1).SingleOrDefault().Name);
+        }
+
+        [TestMethod]
+        public async Task Repository_Test_Get_Planet()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public async Task Repository_Test_Find_Planet()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public async Task Repository_Test_Find_Planets()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public async Task Repository_Test_Delete_Planet()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public async Task Repository_Test_Update_Planet()
+        {
+            throw new NotImplementedException();
+        }
+
+        [TestMethod]
+        public async Task Repository_Test_Add_Planet()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

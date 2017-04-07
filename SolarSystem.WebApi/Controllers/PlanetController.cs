@@ -6,10 +6,10 @@ using System.Web.Http;
 
 namespace SolarSystem.WebApi.Controllers
 {
-    public class ValuesController : ApiController
+    public class PlanetController : ApiController
     {
         private readonly IPlanetRepository repository;
-        public ValuesController(IPlanetRepository repository)
+        public PlanetController(IPlanetRepository repository)
         {
             this.repository = repository;
         }
@@ -21,24 +21,9 @@ namespace SolarSystem.WebApi.Controllers
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public async Task<Planet> Get(int id)
         {
-            return "value";
-        }
-
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+            return await repository.GetPlanetAsync(id);
         }
     }
 }
