@@ -11,14 +11,14 @@ namespace SolarSystem.WebApi.Tests.Repositories
     [TestClass]
     public class DetailedProfileTest
     {
-        public Mock<IRepository<DetailedProfile>> repository { get; set; }
-        public DetailedProfile detailedProfile { get; set; }
+        public Mock<IRepository<Profile>> repository { get; set; }
+        public Profile profile { get; set; }
 
-        DetailedProfileRepository detailedProfileRepository;
+        ProfileRepository profileRepository;
 
         public DetailedProfileTest()
         {
-            detailedProfile = new DetailedProfile
+            profile = new Profile
             {
                 Id = 1,
                 TypeId = 1,
@@ -27,12 +27,12 @@ namespace SolarSystem.WebApi.Tests.Repositories
                 Introduction = "Introduction",
                 HasRings = false
             };
-            repository = new Mock<IRepository<DetailedProfile>>();
+            repository = new Mock<IRepository<Profile>>();
             repository
                 .Setup(p => p.SingleOrDefaultAsync(x => x.Id == 1))
-                .ReturnsAsync(detailedProfile);
+                .ReturnsAsync(profile);
 
-            detailedProfileRepository = new DetailedProfileRepository(repository.Object);
+            profileRepository = new ProfileRepository(repository.Object);
         }
 
         [TestMethod]

@@ -14,10 +14,10 @@ namespace SolarSystem.WebApi.Tests.Controllers
     public class MoonControllerTest
     {
         public Mock<IMoonRepository> moonRepository { get; set; }
-        public Mock<IDetailedProfileRepository> detailedProfileRepository { get; set; }
+        public Mock<IProfileRepository> profileRepository { get; set; }
 
         public List<Moon> moons { get; set; }
-        public DetailedProfile detailedProfile { get; set; }
+        public Profile profile { get; set; }
 
         public MoonController controller { get; set; }
 
@@ -33,7 +33,7 @@ namespace SolarSystem.WebApi.Tests.Controllers
                 .Setup(p => p.GetMoonsAsync())
                 .ReturnsAsync(moons);
 
-            detailedProfile = new DetailedProfile
+            profile = new Profile
             {
                 Id = 1,
                 TypeId = 1,
@@ -43,12 +43,12 @@ namespace SolarSystem.WebApi.Tests.Controllers
                 HasRings = false
             };
 
-            detailedProfileRepository = new Mock<IDetailedProfileRepository>();
-            detailedProfileRepository
+            profileRepository = new Mock<IProfileRepository>();
+            profileRepository
                 .Setup(p => p.GetDetailedProfileAsync(1, "Moon"))
-                .ReturnsAsync(detailedProfile);
+                .ReturnsAsync(profile);
 
-            controller = new MoonController(moonRepository.Object, detailedProfileRepository.Object);
+            controller = new MoonController(moonRepository.Object, profileRepository.Object);
         }
 
         [TestMethod]

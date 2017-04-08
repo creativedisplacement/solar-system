@@ -14,10 +14,10 @@ namespace SolarSystem.WebApi.Tests.Controllers
     public class PlanetControllerTest
     {
         public Mock<IPlanetRepository> planetRepository { get; set; }
-        public Mock<IDetailedProfileRepository> detailedProfileRepository { get; set; }
+        public Mock<IProfileRepository> profileRepository { get; set; }
 
         public List<Planet> planets { get; set; }
-        public DetailedProfile detailedProfile { get; set; }
+        public Profile profile { get; set; }
 
         public PlanetController controller { get; set; }
 
@@ -33,7 +33,7 @@ namespace SolarSystem.WebApi.Tests.Controllers
                 .Setup(p => p.GetPlanetsAsync())
                 .ReturnsAsync(planets);
 
-            detailedProfile = new DetailedProfile
+            profile = new Profile
             {
                 Id = 1,
                 TypeId = 1,
@@ -43,12 +43,12 @@ namespace SolarSystem.WebApi.Tests.Controllers
                 HasRings = false
             };
 
-            detailedProfileRepository = new Mock<IDetailedProfileRepository>();
-            detailedProfileRepository
+            profileRepository = new Mock<IProfileRepository>();
+            profileRepository
                 .Setup(p => p.GetDetailedProfileAsync(1, "Planet"))
-                .ReturnsAsync(detailedProfile);
+                .ReturnsAsync(profile);
 
-            controller = new PlanetController(planetRepository.Object, detailedProfileRepository.Object);
+            controller = new PlanetController(planetRepository.Object, profileRepository.Object);
         }
 
         [TestMethod]

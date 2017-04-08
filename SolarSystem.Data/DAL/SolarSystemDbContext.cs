@@ -12,7 +12,7 @@ namespace SolarSystem.Data.DAL
         public DbSet<Star> Stars { get; set; }
         public DbSet<Planet> Planets { get; set; }
         public DbSet<Moon> Moons { get; set; }
-        public DbSet<DetailedProfile> DetailedProfiles { get; set; }
+        public DbSet<Profile> DetailedProfiles { get; set; }
 
     }
 }

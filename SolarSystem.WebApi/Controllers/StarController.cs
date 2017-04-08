@@ -10,9 +10,9 @@ namespace SolarSystem.WebApi.Controllers
     public class StarController : ApiController
     {
         private readonly IStarRepository starRepository;
-        private readonly IDetailedProfileRepository detailedProfileRepository;
+        private readonly IProfileRepository detailedProfileRepository;
 
-        public StarController(IStarRepository starRepository, IDetailedProfileRepository detailedProfileRepository)
+        public StarController(IStarRepository starRepository, IProfileRepository detailedProfileRepository)
         {
             this.starRepository = starRepository;
             this.detailedProfileRepository = detailedProfileRepository;
@@ -30,7 +30,7 @@ namespace SolarSystem.WebApi.Controllers
             return new FullProfile
             {
                 SpaceBody = await starRepository.GetStarAsync(id),
-                MoreInformation = await detailedProfileRepository.GetDetailedProfileAsync(id, "Star")
+                Profile = await detailedProfileRepository.GetDetailedProfileAsync(id, "Star")
             };
         }
     }

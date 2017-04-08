@@ -16,7 +16,7 @@ namespace SolarSystem.Data.Migrations
             var star = new Star { Name = "Sun", Ordinal = 1, CreatedDate = DateTime.Now, LastUpdatedDate = DateTime.Now };
             var planet = new Planet { Name = "Earth", Ordinal = 3, CreatedDate = DateTime.Now, LastUpdatedDate = DateTime.Now, Star = star };
             var moon = new Moon { Name = "Moon", Ordinal = 1, CreatedDate = DateTime.Now, LastUpdatedDate = DateTime.Now, Planet = planet };
-            var detailedProfile = new DetailedProfile
+            var detailedProfile = new Profile
             {
                 Id = 1,
                 Introduction = "Introduction",

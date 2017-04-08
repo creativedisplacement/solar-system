@@ -10,12 +10,12 @@ namespace SolarSystem.WebApi.Controllers
     public class PlanetController : ApiController
     {
         private readonly IPlanetRepository planetRepository;
-        private readonly IDetailedProfileRepository detailedProfileRepository;
+        private readonly IProfileRepository profileRepository;
 
-        public PlanetController(IPlanetRepository planetRepository, IDetailedProfileRepository detailedProfileRepository)
+        public PlanetController(IPlanetRepository planetRepository, IProfileRepository profileRepository)
         {
             this.planetRepository = planetRepository;
-            this.detailedProfileRepository = detailedProfileRepository;
+            this.profileRepository = profileRepository;
         }
 
         // GET api/values
@@ -30,7 +30,7 @@ namespace SolarSystem.WebApi.Controllers
             return new FullProfile
             {
                 SpaceBody = await planetRepository.GetPlanetAsync(id),
-                MoreInformation = await detailedProfileRepository.GetDetailedProfileAsync(id, "Planet")
+                Profile = await profileRepository.GetDetailedProfileAsync(id, "Planet")
             };
         }
     }

@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace SolarSystem.Repositories.Concrete
 {
-    public class DetailedProfileRepository : IDetailedProfileRepository
+    public class ProfileRepository : IProfileRepository
     {
-        private readonly IRepository<DetailedProfile> repository;
+        private readonly IRepository<Profile> repository;
 
-        public DetailedProfileRepository(IRepository<DetailedProfile> repository)
+        public ProfileRepository(IRepository<Profile> repository)
         {
             this.repository = repository;
         }
 
-        public async Task<bool> AddOrUpdateDetailedProfileAsync(DetailedProfile entity)
+        public async Task<bool> AddOrUpdateDetailedProfileAsync(Profile entity)
         {
             if (entity.Id == 0)
             {
@@ -27,12 +27,12 @@ namespace SolarSystem.Repositories.Concrete
             return (await repository.AttachAsync(entity, Data.EntityStatus.Modified));
         }
 
-        public async Task<bool> DeleteDetailedProfileAsync(DetailedProfile entity)
+        public async Task<bool> DeleteDetailedProfileAsync(Profile entity)
         {
             return (await repository.DeleteAsync(entity));
         }
 
-        public async Task<DetailedProfile> GetDetailedProfileAsync(int id, string type)
+        public async Task<Profile> GetDetailedProfileAsync(int id, string type)
         {
             return (await repository.SingleOrDefaultAsync(s => s.TypeId == id && s.TypeName == type));
         }

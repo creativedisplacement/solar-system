@@ -10,9 +10,9 @@ namespace SolarSystem.WebApi.Controllers
     public class MoonController : ApiController
     {
         private readonly IMoonRepository moonRepository;
-        private readonly IDetailedProfileRepository detailedProfileRepository;
+        private readonly IProfileRepository detailedProfileRepository;
 
-        public MoonController(IMoonRepository moonRepository, IDetailedProfileRepository detailedProfileRepository)
+        public MoonController(IMoonRepository moonRepository, IProfileRepository detailedProfileRepository)
         {
             this.moonRepository = moonRepository;
             this.detailedProfileRepository = detailedProfileRepository;
@@ -30,7 +30,7 @@ namespace SolarSystem.WebApi.Controllers
             return new FullProfile
             {
                 SpaceBody = await moonRepository.GetMoonAsync(id),
-                MoreInformation = await detailedProfileRepository.GetDetailedProfileAsync(id, "Moon")
+                Profile = await detailedProfileRepository.GetDetailedProfileAsync(id, "Moon")
             };
         }
     }

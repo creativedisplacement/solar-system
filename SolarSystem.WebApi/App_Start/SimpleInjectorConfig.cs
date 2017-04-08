@@ -23,7 +23,7 @@ namespace SolarSystem.WebApi
             container.Register<IStarRepository, StarRepository>();
             container.Register<IPlanetRepository, PlanetRepository>();
             container.Register<IMoonRepository, MoonRepository>();
-            container.Register<IDetailedProfileRepository, DetailedProfileRepository>();
+            container.Register<IProfileRepository, ProfileRepository>();
 
             container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
             //container.Verify();

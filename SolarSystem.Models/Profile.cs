@@ -2,7 +2,7 @@
 
 namespace SolarSystem.Models
 {
-    public class DetailedProfile
+    public class Profile
     {
         public int Id { get; set; }
         public string LargeImage { get; set; }
