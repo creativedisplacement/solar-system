@@ -17,14 +17,13 @@ namespace SolarSystem.WebApi
         {
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
-            // Register your stuff here 
-            container.Register<DbContext, SolarSystemDbContext>(Lifestyle.Scoped);
 
-            container.Register(typeof(IRepository<>), typeof(Repository<>), Lifestyle.Scoped);
-
-            container.Register<IStarRepository, StarRepository>(Lifestyle.Scoped);
-            container.Register<IPlanetRepository, PlanetRepository>(Lifestyle.Scoped);
-            container.Register<IMoonRepository, MoonRepository>(Lifestyle.Scoped);
+            container.Register<DbContext, SolarSystemDbContext>(Lifestyle.Transient);
+            container.Register(typeof(IRepository<>), typeof(Repository<>));
+            container.Register<IStarRepository, StarRepository>();
+            container.Register<IPlanetRepository, PlanetRepository>();
+            container.Register<IMoonRepository, MoonRepository>();
+            container.Register<IDetailedProfileRepository, DetailedProfileRepository>();
 
             container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
             //container.Verify();

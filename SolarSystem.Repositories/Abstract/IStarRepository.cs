@@ -1,5 +1,4 @@
-﻿using SolarSystem.Data;
-using SolarSystem.Models;
+﻿using SolarSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -12,10 +11,7 @@ namespace SolarSystem.Repositories.Abstract
         Task<IEnumerable<Star>> GetStarsAsync();
         Task<Star> GetStarAsync(int id);
         Task<IEnumerable<Star>> FindStarAsync(Expression<Func<Star, bool>> where);
-        Task<bool> DeleteAsync(Star entity);
-        Task<bool> AddStarAsync(Star entity);
-        Task<bool> AttachStarAsync(Star entity);
-        Task<bool> AttachStarAsync(Star entity, EntityStatus status);
-        Task<bool> DetachStarAsync(Star entity);
+        Task<bool> DeleteStarAsync(Star entity);
+        Task<bool> AddOrUpdateStarAsync(Star entity);
     }
 }

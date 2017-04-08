@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IDetailedProfileRepository.cs" />
     <Compile Include="Abstract\IMoonRepository.cs" />
     <Compile Include="Abstract\IPlanetRepository.cs" />
     <Compile Include="Abstract\IStarRepository.cs" />
+    <Compile Include="Concrete\DetailedProfileRepository.cs" />
     <Compile Include="Concrete\MoonRepository.cs" />
     <Compile Include="Concrete\PlanetRepository.cs" />
     <Compile Include="Concrete\StarRepository.cs" />

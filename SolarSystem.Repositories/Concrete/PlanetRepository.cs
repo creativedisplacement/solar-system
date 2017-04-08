@@ -19,14 +19,14 @@ namespace SolarSystem.Repositories.Concrete
             this.repository = repository;
         }
 
-        public async Task<bool> AddPlanetAsync(Planet entity)
+        public async Task<bool> AddOrUpdatePlanetAsync(Planet entity)
         {
-            return (await repository.AddAsync(entity));
-        }
+            if (entity.Id == 0)
+            {
+                return (await repository.AddAsync(entity));
+            }
 
-        public async Task<bool> UpdatePlanetAsync(Planet entity, EntityStatus status)
-        {
-            return (await repository.AttachAsync(entity, status));
+            return (await repository.AttachAsync(entity, EntityStatus.Modified));
         }
 
         public async Task<bool> DeletePlanetAsync(Planet entity)

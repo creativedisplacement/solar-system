@@ -13,8 +13,12 @@ namespace SolarSystem.WebApi.Tests.Controllers
     [TestClass]
     public class MoonControllerTest
     {
-        public Mock<IMoonRepository> repository { get; set; }
+        public Mock<IMoonRepository> moonRepository { get; set; }
+        public Mock<IDetailedProfileRepository> detailedProfileRepository { get; set; }
+
         public List<Moon> moons { get; set; }
+        public DetailedProfile detailedProfile { get; set; }
+
         public MoonController controller { get; set; }
 
         public MoonControllerTest()
@@ -24,12 +28,27 @@ namespace SolarSystem.WebApi.Tests.Controllers
                 new Moon { Id = 1, Name = "Moon 1", CreatedDate = DateTime.Now, LastUpdatedDate = DateTime.Now, Ordinal = 1 },
                 new Moon { Id = 2, Name = "Moon 2", CreatedDate = DateTime.Now, LastUpdatedDate = DateTime.Now, Ordinal = 2 },
             };
-            repository = new Mock<IMoonRepository>();
-            repository
+            moonRepository = new Mock<IMoonRepository>();
+            moonRepository
                 .Setup(p => p.GetMoonsAsync())
                 .ReturnsAsync(moons);
 
-            controller = new MoonController(repository.Object);
+            detailedProfile = new DetailedProfile
+            {
+                Id = 1,
+                TypeId = 1,
+                TypeName = "Moon",
+                Content = "Content",
+                Introduction = "Introduction",
+                HasRings = false
+            };
+
+            detailedProfileRepository = new Mock<IDetailedProfileRepository>();
+            detailedProfileRepository
+                .Setup(p => p.GetDetailedProfileAsync(1, "Moon"))
+                .ReturnsAsync(detailedProfile);
+
+            controller = new MoonController(moonRepository.Object, detailedProfileRepository.Object);
         }
 
         [TestMethod]

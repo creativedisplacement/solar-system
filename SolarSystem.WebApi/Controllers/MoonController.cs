@@ -1,4 +1,5 @@
 ﻿using SolarSystem.Models;
+using SolarSystem.Models.ViewModels;
 using SolarSystem.Repositories.Abstract;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,22 +9,29 @@ namespace SolarSystem.WebApi.Controllers
 {
     public class MoonController : ApiController
     {
-        private readonly IMoonRepository repository;
-        public MoonController(IMoonRepository repository)
+        private readonly IMoonRepository moonRepository;
+        private readonly IDetailedProfileRepository detailedProfileRepository;
+
+        public MoonController(IMoonRepository moonRepository, IDetailedProfileRepository detailedProfileRepository)
         {
-            this.repository = repository;
+            this.moonRepository = moonRepository;
+            this.detailedProfileRepository = detailedProfileRepository;
         }
 
         // GET api/values
         public async Task<IEnumerable<Moon>> Get()
         {
-            return await repository.GetMoonsAsync();
+            return await moonRepository.GetMoonsAsync();
         }
 
         // GET api/values/5
-        public async Task<Moon> Get(int id)
+        public async Task<FullProfile> Get(int id)
         {
-            return await repository.GetMoonAsync(id);
+            return new FullProfile
+            {
+                SpaceBody = await moonRepository.GetMoonAsync(id),
+                MoreInformation = await detailedProfileRepository.GetDetailedProfileAsync(id, "Moon")
+            };
         }
     }
 }

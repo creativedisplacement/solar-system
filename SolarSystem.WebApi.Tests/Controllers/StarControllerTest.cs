@@ -13,8 +13,12 @@ namespace SolarSystem.WebApi.Tests.Controllers
     [TestClass]
     public class StarControllerTest
     {
-        public Mock<IStarRepository> repository { get; set; }
+        public Mock<IStarRepository> starRepository { get; set; }
+        public Mock<IDetailedProfileRepository> detailedProfileRepository { get; set; }
+
         public List<Star> stars { get; set; }
+        public DetailedProfile detailedProfile { get; set; }
+
         public StarController controller { get; set; }
 
         public StarControllerTest()
@@ -24,12 +28,27 @@ namespace SolarSystem.WebApi.Tests.Controllers
                 new Star { Id = 1, Name = "Star 1", CreatedDate = DateTime.Now, LastUpdatedDate = DateTime.Now, Ordinal = 1 },
                 new Star { Id = 2, Name = "Star 2", CreatedDate = DateTime.Now, LastUpdatedDate = DateTime.Now, Ordinal = 2 },
             };
-            repository = new Mock<IStarRepository>();
-            repository
+            starRepository = new Mock<IStarRepository>();
+            starRepository
                 .Setup(p => p.GetStarsAsync())
                 .ReturnsAsync(stars);
 
-            controller = new StarController(repository.Object);
+            detailedProfile = new DetailedProfile
+            {
+                Id = 1,
+                TypeId = 1,
+                TypeName = "Star",
+                Content = "Content",
+                Introduction = "Introduction",
+                HasRings = false
+            };
+
+            detailedProfileRepository = new Mock<IDetailedProfileRepository>();
+            detailedProfileRepository
+                .Setup(p => p.GetDetailedProfileAsync(1, "Star"))
+                .ReturnsAsync(detailedProfile);
+
+            controller = new StarController(starRepository.Object, detailedProfileRepository.Object);
         }
 
         [TestMethod]

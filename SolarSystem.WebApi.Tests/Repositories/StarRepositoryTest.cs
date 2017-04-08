@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 namespace SolarSystem.WebApi.Tests.Repositories
 {
     [TestClass]
-    public class IStarRepositoryTest
+    public class StarRepositoryTest
     {
         public Mock<IRepository<Star>> repository { get; set; }
         public List<Star> stars { get; set; }
 
        StarRepository starRepository;
 
-        public IStarRepositoryTest()
+        public StarRepositoryTest()
         {
             stars = new List<Star>
             {

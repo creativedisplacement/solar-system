@@ -1,4 +1,5 @@
 ﻿using SolarSystem.Models;
+using SolarSystem.Models.ViewModels;
 using SolarSystem.Repositories.Abstract;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,22 +9,29 @@ namespace SolarSystem.WebApi.Controllers
 {
     public class PlanetController : ApiController
     {
-        private readonly IPlanetRepository repository;
-        public PlanetController(IPlanetRepository repository)
+        private readonly IPlanetRepository planetRepository;
+        private readonly IDetailedProfileRepository detailedProfileRepository;
+
+        public PlanetController(IPlanetRepository planetRepository, IDetailedProfileRepository detailedProfileRepository)
         {
-            this.repository = repository;
+            this.planetRepository = planetRepository;
+            this.detailedProfileRepository = detailedProfileRepository;
         }
 
         // GET api/values
         public async Task<IEnumerable<Planet>> Get()
         {
-            return await repository.GetPlanetsAsync();
+            return await planetRepository.GetPlanetsAsync();
         }
 
         // GET api/values/5
-        public async Task<Planet> Get(int id)
+        public async Task<FullProfile> Get(int id)
         {
-            return await repository.GetPlanetAsync(id);
+            return new FullProfile
+            {
+                SpaceBody = await planetRepository.GetPlanetAsync(id),
+                MoreInformation = await detailedProfileRepository.GetDetailedProfileAsync(id, "Planet")
+            };
         }
     }
 }

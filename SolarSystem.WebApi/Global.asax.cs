@@ -19,27 +19,12 @@ namespace SolarSystem.WebApi
     {
         protected void Application_Start()
         {
-            var container = new Container();
-            container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
-            // Register your stuff here 
-            container.Register<DbContext, SolarSystemDbContext>(Lifestyle.Transient);
-
-            container.Register(typeof(IRepository<>), typeof(Repository<>));
-
-            container.Register<IStarRepository, StarRepository>();
-            container.Register<IPlanetRepository, PlanetRepository>();
-            container.Register<IMoonRepository, MoonRepository>();
-
-            container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
-            //container.Verify();
-            GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
-
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //SimpleInjectorConfig.Register();
+            SimpleInjectorConfig.Register();
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         }
     }

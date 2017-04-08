@@ -113,9 +113,10 @@
     <Compile Include="Controllers\MoonControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="Repositories\IPlanetRepositoryTest.cs" />
-    <Compile Include="Repositories\IStarRepositoryTest.cs" />
-    <Compile Include="Repositories\IMoonRepositoryTest.cs" />
+    <Compile Include="Repositories\PlanetRepositoryTest.cs" />
+    <Compile Include="Repositories\StarRepositoryTest.cs" />
+    <Compile Include="Repositories\MoonRepositoryTest.cs" />
+    <Compile Include="Repositories\DetailedProfileTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

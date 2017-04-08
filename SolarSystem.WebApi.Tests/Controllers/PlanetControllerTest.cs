@@ -13,8 +13,12 @@ namespace SolarSystem.WebApi.Tests.Controllers
     [TestClass]
     public class PlanetControllerTest
     {
-        public Mock<IPlanetRepository> repository { get; set; }
+        public Mock<IPlanetRepository> planetRepository { get; set; }
+        public Mock<IDetailedProfileRepository> detailedProfileRepository { get; set; }
+
         public List<Planet> planets { get; set; }
+        public DetailedProfile detailedProfile { get; set; }
+
         public PlanetController controller { get; set; }
 
         public PlanetControllerTest()
@@ -24,12 +28,27 @@ namespace SolarSystem.WebApi.Tests.Controllers
                 new Planet { Id = 1, Name = "Planet 1", CreatedDate = DateTime.Now, LastUpdatedDate = DateTime.Now, Ordinal = 1 },
                 new Planet { Id = 2, Name = "Planet 2", CreatedDate = DateTime.Now, LastUpdatedDate = DateTime.Now, Ordinal = 2 },
             };
-            repository = new Mock<IPlanetRepository>();
-            repository
+            planetRepository = new Mock<IPlanetRepository>();
+            planetRepository
                 .Setup(p => p.GetPlanetsAsync())
                 .ReturnsAsync(planets);
 
-            controller = new PlanetController(repository.Object);
+            detailedProfile = new DetailedProfile
+            {
+                Id = 1,
+                TypeId = 1,
+                TypeName = "Planet",
+                Content = "Content",
+                Introduction = "Introduction",
+                HasRings = false
+            };
+
+            detailedProfileRepository = new Mock<IDetailedProfileRepository>();
+            detailedProfileRepository
+                .Setup(p => p.GetDetailedProfileAsync(1, "Planet"))
+                .ReturnsAsync(detailedProfile);
+
+            controller = new PlanetController(planetRepository.Object, detailedProfileRepository.Object);
         }
 
         [TestMethod]

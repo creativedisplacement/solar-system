@@ -1,5 +1,4 @@
-﻿using SolarSystem.Data;
-using SolarSystem.Models;
+﻿using SolarSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -12,10 +11,7 @@ namespace SolarSystem.Repositories.Abstract
         Task<IEnumerable<Moon>> GetMoonsAsync();
         Task<Moon> GetMoonAsync(int id);
         Task<IEnumerable<Moon>> FindMoonAsync(Expression<Func<Moon, bool>> where);
-        Task<bool> DeleteAsync(Moon entity);
-        Task<bool> AddMoonAsync(Moon entity);
-        Task<bool> AttachMoonAsync(Moon entity);
-        Task<bool> AttachMoonAsync(Moon entity, EntityStatus status);
-        Task<bool> DetachMoonAsync(Moon entity);
+        Task<bool> DeleteMoonAsync(Moon entity);
+        Task<bool> AddOrUpdateMoonAsync(Moon entity);
     }
 }
