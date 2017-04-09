@@ -1,9 +1,8 @@
-﻿using SolarSystem.Data.Abstract;
+﻿using SolarSystem.Data;
+using SolarSystem.Data.Abstract;
 using SolarSystem.Models;
 using SolarSystem.Repositories.Abstract;
 using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace SolarSystem.Repositories.Concrete
@@ -17,22 +16,22 @@ namespace SolarSystem.Repositories.Concrete
             this.repository = repository;
         }
 
-        public async Task<bool> AddOrUpdateDetailedProfileAsync(Profile entity)
+        public void AddOrUpdateProfileAsync(Profile entity)
         {
             if (entity.Id == 0)
             {
-                return (await repository.AddAsync(entity));
+                repository.Add(entity);
             }
 
-            return (await repository.AttachAsync(entity, Data.EntityStatus.Modified));
+            repository.Attach(entity, EntityStatus.Modified);
         }
 
-        public async Task<bool> DeleteDetailedProfileAsync(Profile entity)
+        public void DeleteProfileAsync(Profile entity)
         {
-            return (await repository.DeleteAsync(entity));
+            repository.Delete(entity);
         }
 
-        public async Task<Profile> GetDetailedProfileAsync(int id, string type)
+        public async Task<Profile> GetProfileAsync(int id, string type)
         {
             return (await repository.SingleOrDefaultAsync(s => s.TypeId == id && s.TypeName == type));
         }

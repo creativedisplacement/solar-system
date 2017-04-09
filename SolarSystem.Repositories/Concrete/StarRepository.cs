@@ -19,19 +19,19 @@ namespace SolarSystem.Repositories.Concrete
             this.repository = repository;
         }
 
-        public async Task<bool> AddOrUpdateStarAsync(Star entity)
+        public void AddOrUpdateStarAsync(Star entity)
         {
             if (entity.Id == 0)
             {
-                return (await repository.AddAsync(entity));
+                repository.Add(entity);
             }
 
-            return (await repository.AttachAsync(entity, EntityStatus.Modified));
+            repository.Attach(entity, EntityStatus.Modified);
         }
 
-        public async Task<bool> DeleteStarAsync(Star entity)
+        public void DeleteStarAsync(Star entity)
         {
-            return (await repository.DeleteAsync(entity));
+            repository.Delete(entity);
         }
 
         public async Task<IEnumerable<Star>> FindStarAsync(Expression<Func<Star, bool>> where)

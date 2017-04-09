@@ -19,19 +19,19 @@ namespace SolarSystem.Repositories.Concrete
             this.repository = repository;
         }
 
-        public async Task<bool> AddOrUpdateMoonAsync(Moon entity)
+        public void AddOrUpdateMoonAsync(Moon entity)
         {
             if (entity.Id == 0)
             {
-                return (await repository.AddAsync(entity));
+                repository.Add(entity);
             }
 
-            return (await repository.AttachAsync(entity, EntityStatus.Modified));
+            repository.Attach(entity, EntityStatus.Modified);
         }
 
-        public async Task<bool> DeleteMoonAsync(Moon entity)
+        public void DeleteMoonAsync(Moon entity)
         {
-            return (await repository.DeleteAsync(entity));
+            repository.Delete(entity);
         }
 
         public async Task<IEnumerable<Moon>> FindMoonAsync(Expression<Func<Moon, bool>> where)

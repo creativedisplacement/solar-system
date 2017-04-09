@@ -9,6 +9,6 @@ namespace SolarSystem.Core
         public string SmallImage { get; set; }
         public int? Ordinal { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime LastUpdatedDate { get; set; }
+        public DateTime LastUpdatedDate { get; set; } = DateTime.Now;
     }
 }

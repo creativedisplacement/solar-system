@@ -11,7 +11,7 @@ namespace SolarSystem.Repositories.Abstract
         Task<IEnumerable<Moon>> GetMoonsAsync();
         Task<Moon> GetMoonAsync(int id);
         Task<IEnumerable<Moon>> FindMoonAsync(Expression<Func<Moon, bool>> where);
-        Task<bool> DeleteMoonAsync(Moon entity);
-        Task<bool> AddOrUpdateMoonAsync(Moon entity);
+        void DeleteMoonAsync(Moon entity);
+        void AddOrUpdateMoonAsync(Moon entity);
     }
 }

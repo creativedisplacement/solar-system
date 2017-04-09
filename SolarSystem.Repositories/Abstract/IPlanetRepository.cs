@@ -11,7 +11,7 @@ namespace SolarSystem.Repositories.Abstract
         Task<IEnumerable<Planet>> GetPlanetsAsync();
         Task<Planet> GetPlanetAsync(int id);
         Task<IEnumerable<Planet>> FindPlanetAsync(Expression<Func<Planet, bool>> where);
-        Task<bool> DeletePlanetAsync(Planet entity);
-        Task<bool> AddOrUpdatePlanetAsync(Planet entity);
+        void DeletePlanetAsync(Planet entity);
+        void AddOrUpdatePlanetAsync(Planet entity);
     }
 }

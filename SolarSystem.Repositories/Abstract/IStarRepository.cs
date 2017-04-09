@@ -11,7 +11,7 @@ namespace SolarSystem.Repositories.Abstract
         Task<IEnumerable<Star>> GetStarsAsync();
         Task<Star> GetStarAsync(int id);
         Task<IEnumerable<Star>> FindStarAsync(Expression<Func<Star, bool>> where);
-        Task<bool> DeleteStarAsync(Star entity);
-        Task<bool> AddOrUpdateStarAsync(Star entity);
+        void DeleteStarAsync(Star entity);
+        void AddOrUpdateStarAsync(Star entity);
     }
 }

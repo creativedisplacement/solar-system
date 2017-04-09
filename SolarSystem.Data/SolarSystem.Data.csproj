@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IUnitOfWork.cs" />
     <Compile Include="Concrete\Repository.cs" />
+    <Compile Include="Concrete\UnitOfWork.cs" />
     <Compile Include="DAL\SolarSystemDbContext.cs" />
     <Compile Include="EntityStatus.cs" />
     <Compile Include="Migrations\201704071142441_initial migration.cs" />

@@ -45,42 +45,32 @@ namespace SolarSystem.Data.Concrete
             return await DbSet.FirstOrDefaultAsync(where);
         }
 
-        public async Task<bool> DeleteAsync(T entity)
+        public void Delete(T entity)
         {
             DbSet.Attach(entity);
             dataContext.Entry(entity).State = EntityState.Deleted;
-            int i = await dataContext.SaveChangesAsync();
-            return i == 0 ? false : true;
         }
 
-        public async Task<bool> AddAsync(T entity)
+        public void Add(T entity)
         {
             DbSet.Add(entity);
-            int i = await dataContext.SaveChangesAsync();
-            return i == 0 ? false : true;
         }
 
-        public async Task<bool> AttachAsync(T entity)
+        public void Attach(T entity)
         {
-            await AttachAsync(entity, EntityStatus.Unchanged);
-            int i = await dataContext.SaveChangesAsync();
-            return i == 0 ? false : true;
+            Attach(entity, EntityStatus.Unchanged);
         }
 
-        public async Task<bool> AttachAsync(T entity, EntityStatus status)
+        public void Attach(T entity, EntityStatus status)
         {
             DbSet.Attach(entity);
             dataContext.Entry(entity).State = GetEntityState(status);
-            int i = await dataContext.SaveChangesAsync();
-            return i == 0 ? false : true;
         }
 
-        public async Task<bool> DetachAsync(T entity)
+        public void Detach(T entity)
         {
             DbSet.Attach(entity);
             dataContext.Entry(entity).State = GetEntityState(EntityStatus.Detached);
-            int i = await dataContext.SaveChangesAsync();
-            return i == 0 ? false : true;
 
         }
 

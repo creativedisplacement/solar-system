@@ -13,10 +13,10 @@ namespace SolarSystem.Data.Abstract
         Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> where);
         Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> where);
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> where);
-        Task<bool> DeleteAsync(T entity);
-        Task<bool> AddAsync(T entity);
-        Task<bool> AttachAsync(T entity);
-        Task<bool> AttachAsync(T entity, EntityStatus status);
-        Task<bool> DetachAsync(T entity);
+        void Delete(T entity);
+        void Add(T entity);
+        void Attach(T entity);
+        void Attach(T entity, EntityStatus status);
+        void Detach(T entity);
     }
 }

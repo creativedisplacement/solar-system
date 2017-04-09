@@ -18,19 +18,19 @@ namespace SolarSystem.WebApi.Controllers
             this.detailedProfileRepository = detailedProfileRepository;
         }
 
-        // GET api/values
+        // GET api/star
         public async Task<IEnumerable<Star>> Get()
         {
             return await starRepository.GetStarsAsync();
         }
 
-        // GET api/values/5
+        // GET api/star/5
         public async Task<FullProfile> Get(int id)
         {
             return new FullProfile
             {
                 SpaceBody = await starRepository.GetStarAsync(id),
-                Profile = await detailedProfileRepository.GetDetailedProfileAsync(id, "Star")
+                Profile = await detailedProfileRepository.GetProfileAsync(id, "Star")
             };
         }
     }
