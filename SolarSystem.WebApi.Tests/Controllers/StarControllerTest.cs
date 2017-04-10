@@ -15,10 +15,8 @@ namespace SolarSystem.WebApi.Tests.Controllers
     {
         public Mock<IStarRepository> starRepository { get; set; }
         public Mock<IProfileRepository> profileRepository { get; set; }
-
         public List<Star> stars { get; set; }
         public Profile profile { get; set; }
-
         public StarController controller { get; set; }
 
         public StarControllerTest()
@@ -45,7 +43,7 @@ namespace SolarSystem.WebApi.Tests.Controllers
 
             profileRepository = new Mock<IProfileRepository>();
             profileRepository
-                .Setup(p => p.GetDetailedProfileAsync(1, "Star"))
+                .Setup(p => p.GetProfileAsync(1, "Star"))
                 .ReturnsAsync(profile);
 
             controller = new StarController(starRepository.Object, profileRepository.Object);

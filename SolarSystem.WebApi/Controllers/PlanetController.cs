@@ -13,13 +13,11 @@ namespace SolarSystem.WebApi.Controllers
     {
         private readonly IPlanetRepository planetRepository;
         private readonly IProfileRepository profileRepository;
-        private readonly IUnitofWork unitOfWork;
 
-        public PlanetController(IPlanetRepository planetRepository, IProfileRepository profileRepository, IUnitofWork unitOfWork)
+        public PlanetController(IPlanetRepository planetRepository, IProfileRepository profileRepository)
         {
             this.planetRepository = planetRepository;
             this.profileRepository = profileRepository;
-            this.unitOfWork = unitOfWork;
         }
 
         //GET api/planet

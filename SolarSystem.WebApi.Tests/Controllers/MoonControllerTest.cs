@@ -15,10 +15,8 @@ namespace SolarSystem.WebApi.Tests.Controllers
     {
         public Mock<IMoonRepository> moonRepository { get; set; }
         public Mock<IProfileRepository> profileRepository { get; set; }
-
         public List<Moon> moons { get; set; }
         public Profile profile { get; set; }
-
         public MoonController controller { get; set; }
 
         public MoonControllerTest()
@@ -45,7 +43,7 @@ namespace SolarSystem.WebApi.Tests.Controllers
 
             profileRepository = new Mock<IProfileRepository>();
             profileRepository
-                .Setup(p => p.GetDetailedProfileAsync(1, "Moon"))
+                .Setup(p => p.GetProfileAsync(1, "Moon"))
                 .ReturnsAsync(profile);
 
             controller = new MoonController(moonRepository.Object, profileRepository.Object);

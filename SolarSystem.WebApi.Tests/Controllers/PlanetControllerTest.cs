@@ -15,10 +15,8 @@ namespace SolarSystem.WebApi.Tests.Controllers
     {
         public Mock<IPlanetRepository> planetRepository { get; set; }
         public Mock<IProfileRepository> profileRepository { get; set; }
-
         public List<Planet> planets { get; set; }
         public Profile profile { get; set; }
-
         public PlanetController controller { get; set; }
 
         public PlanetControllerTest()
@@ -45,7 +43,7 @@ namespace SolarSystem.WebApi.Tests.Controllers
 
             profileRepository = new Mock<IProfileRepository>();
             profileRepository
-                .Setup(p => p.GetDetailedProfileAsync(1, "Planet"))
+                .Setup(p => p.GetProfileAsync(1, "Planet"))
                 .ReturnsAsync(profile);
 
             controller = new PlanetController(planetRepository.Object, profileRepository.Object);
