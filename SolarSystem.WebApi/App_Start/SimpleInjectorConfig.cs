@@ -19,7 +19,6 @@ namespace SolarSystem.WebApi
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
             container.Register<SolarSystemDbContext, SolarSystemDbContext>(Lifestyle.Scoped);
-            container.Register<IUnitofWork, UnitOfWork>();
             container.Register(typeof(IRepository<>), typeof(Repository<>));
             container.Register<IStarRepository, StarRepository>();
             container.Register<IPlanetRepository, PlanetRepository>();

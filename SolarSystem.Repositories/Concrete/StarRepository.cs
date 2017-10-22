@@ -19,19 +19,19 @@ namespace SolarSystem.Repositories.Concrete
             this.repository = repository;
         }
 
-        public void AddOrUpdateStarAsync(Star entity)
+        public async Task<int> AddOrUpdateStarAsync(Star star)
         {
-            if (entity.Id == 0)
+            if (star.Id == 0)
             {
-                repository.Add(entity);
+               return await repository.AddAsync(star);
             }
 
-            repository.Attach(entity, EntityStatus.Modified);
+            return await repository.SaveAsync(star);
         }
 
-        public void DeleteStarAsync(Star entity)
+        public async Task<int> DeleteStarAsync(int id, byte[] timestamp)
         {
-            repository.Delete(entity);
+            return await repository.DeleteAsync(new Star { Id = id, Timestamp = timestamp });
         }
 
         public async Task<IEnumerable<Star>> FindStarAsync(Expression<Func<Star, bool>> where)
@@ -48,33 +48,5 @@ namespace SolarSystem.Repositories.Concrete
         {
             return (await repository.GetAllAsync()).OrderBy(s => s.Ordinal);
         }
-
-        #region "disposing methods"
-
-        private bool disposed = false;
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    if (repository != null)
-                    {
-                        repository.Dispose();
-                    }
-                }
-
-                disposed = true;
-            }
-        }
-
-        #endregion
     }
 }

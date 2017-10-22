@@ -16,52 +16,24 @@ namespace SolarSystem.Repositories.Concrete
             this.repository = repository;
         }
 
-        public void AddOrUpdateProfileAsync(Profile entity)
+        public async Task<int> AddOrUpdateProfileAsync(Profile profile)
         {
-            if (entity.Id == 0)
+            if (profile.Id == 0)
             {
-                repository.Add(entity);
+                return await repository.AddAsync(profile);
             }
 
-            repository.Attach(entity, EntityStatus.Modified);
+            return await repository.SaveAsync(profile);
         }
 
-        public void DeleteProfileAsync(Profile entity)
+        public async Task<int> DeleteProfileAsync(int id, byte[] timestamp)
         {
-            repository.Delete(entity);
+            return await repository.DeleteAsync(new Profile { Id = id, Timestamp = timestamp });
         }
 
         public async Task<Profile> GetProfileAsync(int id, string type)
         {
             return (await repository.SingleOrDefaultAsync(s => s.TypeId == id && s.TypeName == type));
         }
-
-        #region "disposing methods"
-
-        private bool disposed = false;
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    if (repository != null)
-                    {
-                        repository.Dispose();
-                    }
-                }
-
-                disposed = true;
-            }
-        }
-
-        #endregion
     }
 }

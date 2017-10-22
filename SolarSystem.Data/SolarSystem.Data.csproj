@@ -48,11 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IRepository.cs" />
-    <Compile Include="Abstract\IUnitOfWork.cs" />
     <Compile Include="Concrete\Repository.cs" />
-    <Compile Include="Concrete\UnitOfWork.cs" />
     <Compile Include="DAL\SolarSystemDbContext.cs" />
-    <Compile Include="EntityStatus.cs" />
     <Compile Include="Migrations\201704071142441_initial migration.cs" />
     <Compile Include="Migrations\201704071142441_initial migration.Designer.cs">
       <DependentUpon>201704071142441_initial migration.cs</DependentUpon>
@@ -64,6 +61,10 @@
     <Compile Include="Migrations\201704080014008_change detailedprofile model to profile.cs" />
     <Compile Include="Migrations\201704080014008_change detailedprofile model to profile.Designer.cs">
       <DependentUpon>201704080014008_change detailedprofile model to profile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710221542313_refactor.cs" />
+    <Compile Include="Migrations\201710221542313_refactor.Designer.cs">
+      <DependentUpon>201710221542313_refactor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704080014008_change detailedprofile model to profile.resx">
       <DependentUpon>201704080014008_change detailedprofile model to profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710221542313_refactor.resx">
+      <DependentUpon>201710221542313_refactor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

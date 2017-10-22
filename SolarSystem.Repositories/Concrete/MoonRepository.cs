@@ -19,19 +19,19 @@ namespace SolarSystem.Repositories.Concrete
             this.repository = repository;
         }
 
-        public void AddOrUpdateMoonAsync(Moon entity)
+        public async Task<int> AddOrUpdateMoonAsync(Moon moon)
         {
-            if (entity.Id == 0)
+            if (moon.Id == 0)
             {
-                repository.Add(entity);
+                return await repository.AddAsync(moon);
             }
 
-            repository.Attach(entity, EntityStatus.Modified);
+            return await repository.SaveAsync(moon);
         }
 
-        public void DeleteMoonAsync(Moon entity)
+        public async Task<int> DeleteMoonAsync(int id, byte[] timestamp)
         {
-            repository.Delete(entity);
+            return await repository.DeleteAsync(new Moon { Id = id, Timestamp = timestamp });
         }
 
         public async Task<IEnumerable<Moon>> FindMoonAsync(Expression<Func<Moon, bool>> where)
@@ -48,33 +48,5 @@ namespace SolarSystem.Repositories.Concrete
         {
             return (await repository.GetAllAsync()).OrderBy(s => s.Ordinal);
         }
-
-        #region "disposing methods"
-
-        private bool disposed = false;
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    if (repository != null)
-                    {
-                        repository.Dispose();
-                    }
-                }
-
-                disposed = true;
-            }
-        }
-
-        #endregion
     }
 }

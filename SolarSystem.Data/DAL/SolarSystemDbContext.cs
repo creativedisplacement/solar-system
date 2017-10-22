@@ -7,12 +7,12 @@ namespace SolarSystem.Data.DAL
     {
         public SolarSystemDbContext() : base("name=SolarSystemDbContext")
         {
-
+            base.Configuration.ProxyCreationEnabled = false;
         }
-        public DbSet<Star> Stars { get; set; }
-        public DbSet<Planet> Planets { get; set; }
-        public DbSet<Moon> Moons { get; set; }
-        public DbSet<Profile> DetailedProfiles { get; set; }
+        public virtual DbSet<Star> Stars { get; set; }
+        public virtual DbSet<Planet> Planets { get; set; }
+        public virtual DbSet<Moon> Moons { get; set; }
+        public virtual DbSet<Profile> DetailedProfiles { get; set; }
 
     }
 }

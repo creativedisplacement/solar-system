@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SolarSystem.Repositories.Abstract
 {
-    public interface IStarRepository : IDisposable
+    public interface IStarRepository
     {
         Task<IEnumerable<Star>> GetStarsAsync();
         Task<Star> GetStarAsync(int id);
         Task<IEnumerable<Star>> FindStarAsync(Expression<Func<Star, bool>> where);
-        void DeleteStarAsync(Star entity);
-        void AddOrUpdateStarAsync(Star entity);
+        Task<int> DeleteStarAsync(int id, byte[] timestamp);
+        Task<int> AddOrUpdateStarAsync(Star entity);
     }
 }

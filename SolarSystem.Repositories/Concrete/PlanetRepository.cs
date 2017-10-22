@@ -19,19 +19,19 @@ namespace SolarSystem.Repositories.Concrete
             this.repository = repository;
         }
 
-        public void AddOrUpdatePlanetAsync(Planet entity)
+        public async Task<int> AddOrUpdatePlanetAsync(Planet planet)
         {
-            if (entity.Id == 0)
+            if (planet.Id == 0)
             {
-                repository.Add(entity);
+                return await repository.AddAsync(planet);
             }
 
-            repository.Attach(entity, EntityStatus.Modified);
+            return await repository.SaveAsync(planet);
         }
 
-        public void DeletePlanetAsync(Planet entity)
+        public async Task<int> DeletePlanetAsync(int id, byte[] timestamp)
         {
-            repository.Delete(entity);
+            return await repository.DeleteAsync(new Planet { Id = id, Timestamp = timestamp });
         }
 
         public async Task<IEnumerable<Planet>> FindPlanetAsync(Expression<Func<Planet, bool>> where)
@@ -48,33 +48,5 @@ namespace SolarSystem.Repositories.Concrete
         {
             return (await repository.GetAllAsync()).OrderBy(s => s.Ordinal);
         }
-
-        #region "disposing methods"
-
-        private bool disposed = false;
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    if (repository != null)
-                    {
-                        repository.Dispose();
-                    }
-                }
-
-                disposed = true;
-            }
-        }
-
-        #endregion
     }
 }

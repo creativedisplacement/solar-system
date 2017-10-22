@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace SolarSystem.Models
 {
-    public class Star : Base
+    public partial class Star : Base
     {
-        public virtual ICollection<Planet> Planets { get; set; }
+        public virtual ICollection<Planet> Planets { get; set; } = new HashSet<Planet>();
     }
 }

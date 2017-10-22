@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 
 namespace SolarSystem.Repositories.Abstract
 {
-    public interface IProfileRepository : IDisposable
+    public interface IProfileRepository
     {
         Task<Profile> GetProfileAsync(int id, string type);
-        void DeleteProfileAsync(Profile entity);
-        void AddOrUpdateProfileAsync(Profile entity);
+        Task<int> DeleteProfileAsync(int id, byte[] timestamp);
+        Task<int> AddOrUpdateProfileAsync(Profile profile);
     }
 }
